@@ -1,0 +1,44 @@
+from fastapi import FastAPI
+from .models import Consulta
+import random
+
+app = FastAPI()
+
+# Dados simulados de pragas por cultura
+pragas = {
+    "soja": ["lagarta-da-soja", "percevejo-marrom"],
+    "milho": ["lagarta-do-cartucho", "pulgão-do-milho"],
+    "café": ["broca-do-café", "ferrugem-do-cafeeiro"],
+}
+
+# Função para prever o clima
+def prever_clima():
+    opcoes = ["chuva", "sol", "seco", "geada leve", "neblina", "tempestade"]
+    return random.choice(opcoes)
+
+# Função para recomendar cultura com base na região e mês
+def recomendar_cultura(regiao, mes):
+    if regiao.lower() == "centro-oeste":
+        if mes in [10, 11, 12]:
+            return "Ideal para plantar soja ou milho."
+        elif mes in [1, 2, 3]:
+            return "Momento de colheita e rotação de culturas."
+    elif regiao.lower() == "sudeste":
+        if mes in [4, 5, 6]:
+            return "Boa época para café e hortaliças."
+    return "Consulte o engenheiro agrônomo local para melhor precisão."
+
+@app.post("/agro/diagnostico/")
+def diagnostico_agro(dados: Consulta):
+    clima = prever_clima()
+    recomendacao = recomendar_cultura(dados.regiao, dados.mes)
+    diagnostico_praga = pragas.get(dados.cultura, [])
+    
+    return {
+        "regiao": dados.regiao,
+        "mes": dados.mes,
+        "cultura": dados.cultura,
+        "clima_hoje": clima,
+        "recomendacao": recomendacao,
+        "diagnostico_pragas": diagnostico_praga
+    }
