@@ -1,0 +1,16 @@
+---
+
+### 2. **Criando o repositório no GitHub**
+
+1. Acesse o [GitHub](https://github.com) e crie um novo repositório chamado **agroia-brasil**.
+2. Faça o **clone** do repositório na sua máquina.
+3. Copie e cole a estrutura de pastas e os arquivos mencionados acima dentro do diretório do repositório local.
+4. No terminal, dentro da pasta do repositório, rode os seguintes comandos:
+
+```bash
+git init
+git add .
+git commit -m "Primeiro commit: API AgroIA Brasil"
+git branch -M main
+git remote add origin https://github.com/SEU-USERNAME/agroia-brasil.git
+git push -u origin main
