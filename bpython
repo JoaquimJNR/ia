@@ -1,0 +1,6 @@
+from pydantic import BaseModel
+
+class Consulta(BaseModel):
+    regiao: str
+    mes: int
+    cultura: str
