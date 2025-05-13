@@ -1,0 +1,8 @@
+{
+  "regiao": "Centro-Oeste",
+  "mes": 11,
+  "cultura": "soja",
+  "clima_hoje": "sol",
+  "recomendacao": "Ideal para plantar soja ou milho.",
+  "diagnostico_pragas": ["lagarta-da-soja", "percevejo-marrom"]
+}
